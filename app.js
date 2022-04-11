@@ -54,7 +54,7 @@ const weapons = {
     fiveStars: [
         'aquila-favonia',
         'lost-prayer-to-the-sacred-winds',
-        'primodial-jade-winged-spear',
+        'primordial-jade-winged-spear',
         "wolfs-gravestone",
         "amos-bow",
         'skyward-blade',
@@ -118,10 +118,34 @@ function makeSingleWish(e) {
     totalPullsEl.innerText = `${totalPullCount}`;
     console.log(pity5, pity4);
 
+    // Check for 5 star pity
+    if (pity5 === 90) {
+        // Output 5 star chracter or weapon (50% chance each)
+        let val = Math.random();
 
-    // Check for 4 star pity
-    if (pity4 === 10) {
-        // Output a 4 star character or weapon
+        if (val > 0.5) {
+            // Ouput 5 star character
+            const card = document.createElement('div');
+            card.classList.add('card');
+            let char5Star = characters.fiveStars[Math.floor(Math.random() * characters.fiveStars.length)];
+
+            card.innerHTML = `<img src="images/characters/${char5Star}.png">`;
+            cardContainer.appendChild(card);
+
+        } else {
+            // Output 5 star weapon
+            const card = document.createElement('div');
+            card.classList.add('card');
+            let weapon5Star = weapons.fiveStars[Math.floor(Math.random() * weapons.fiveStars.length)];
+
+            card.innerHTML = `<img src="images/weapons/${weapon5Star}.png">`;
+            cardContainer.appendChild(card);
+        }
+        // Reset pity 5 count
+        pity5 = 0;
+
+    } else if (pity4 === 10) { // Check for 4 star pity
+        // Output a 4 star character or weapon (50% chance each)
         let val = Math.random();
         if (val > 0.5) {
             // Ouput 4 star character
