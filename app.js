@@ -100,12 +100,18 @@ const weapons = {
     ]
 }
 
-function createCard(type, drawableItems) {
+function createCard(type, drawableItems, rarity) {
     const card = document.createElement('div');
-    card.classList.add('card');
+    
+    card.classList.add('card', `${rarity}`); 
     let result = drawableItems[Math.floor(Math.random() * drawableItems.length)];
 
     card.innerHTML = `<img src="images/${type}/${result}.png">`;
+    if(rarity === 'five-stars'){
+        card.style.background = '#B88B52';
+    } else if(rarity === 'four-stars') {
+        card.style.background = '#A18BB8';
+    }
     cardContainer.appendChild(card);
 }
 
@@ -130,10 +136,10 @@ function makeSingleWish(e) {
 
         if (val > 0.5) {
             // Ouput 5 star character
-            createCard('characters', characters.fiveStars);
+            createCard('characters', characters.fiveStars, 'five-stars');
         } else {
             // Output 5 star weapon
-            createCard('weapons', weapons.fiveStars);
+            createCard('weapons', weapons.fiveStars, 'five-stars');
         }
         // Reset pity 5 count
         pity5 = 0;
@@ -144,11 +150,11 @@ function makeSingleWish(e) {
         let val = Math.random();
         if (val > 0.5) {
             // Ouput 4 star character
-            createCard('characters', characters.fourStars);
+            createCard('characters', characters.fourStars, 'four-stars');
 
         } else {
             // Output 4 star weapon
-            createCard('weapons', weapons.fourStars);
+            createCard('weapons', weapons.fourStars, 'four-stars');
         }
 
         // reset pity 4 count
@@ -163,11 +169,11 @@ function makeSingleWish(e) {
             // Output 5 star chracter or weapon (50% chance each)
             if (val5star > 0.5) {
                 // Ouput 5 star character
-                createCard('characters', characters.fiveStars);
+                createCard('characters', characters.fiveStars, 'five-stars');
 
             } else {
                 // Output 5 star weapon
-                createCard('weapons', weapons.fiveStars);
+                createCard('weapons', weapons.fiveStars, 'five-stars');
             }
             // reset pity 5 count
             pity5 = 0;
@@ -177,18 +183,18 @@ function makeSingleWish(e) {
             let val4star = Math.random();
             if (val4star > 0.5) {
                 // Ouput 4 star character
-                createCard('characters', characters.fourStars);
+                createCard('characters', characters.fourStars, 'four-stars');
 
             } else {
                 // Output 4 star weapon
-                createCard('weapons', weapons.fourStars);
+                createCard('weapons', weapons.fourStars, 'four-stars');
             }
             // reset pity 4 count
             pity4 = 0;
 
             // Scenario: 3 star (Chance of 0.944)
         } else {
-            createCard('weapons', weapons.threeStars);
+            createCard('weapons', weapons.threeStars, 'three-stars');
         }
     }
 }
@@ -212,10 +218,10 @@ function makeTenWishes(e) {
 
             if (val > 0.5) {
                 // Ouput 5 star character
-                createCard('characters', characters.fiveStars);
+                createCard('characters', characters.fiveStars, 'five-stars');
             } else {
                 // Output 5 star weapon
-                createCard('weapons', weapons.fiveStars);
+                createCard('weapons', weapons.fiveStars, 'five-stars');
             }
             // Reset pity 5 count
             pity5 = 0;
@@ -226,11 +232,11 @@ function makeTenWishes(e) {
             let val = Math.random();
             if (val > 0.5) {
                 // Ouput 4 star character
-                createCard('characters', characters.fourStars);
+                createCard('characters', characters.fourStars, 'four-stars');
 
             } else {
                 // Output 4 star weapon
-                createCard('weapons', weapons.fourStars);
+                createCard('weapons', weapons.fourStars, 'four-stars');
             }
 
             // reset pity 4 count
@@ -245,11 +251,11 @@ function makeTenWishes(e) {
                 // Output 5 star chracter or weapon (50% chance each)
                 if (val5star > 0.5) {
                     // Ouput 5 star character
-                    createCard('characters', characters.fiveStars);
+                    createCard('characters', characters.fiveStars, 'five-stars');
 
                 } else {
                     // Output 5 star weapon
-                    createCard('weapons', weapons.fiveStars);
+                    createCard('weapons', weapons.fiveStars, 'five-stars');
                 }
                 // reset pity 5 count
                 pity5 = 0;
@@ -259,18 +265,18 @@ function makeTenWishes(e) {
                 let val4star = Math.random();
                 if (val4star > 0.5) {
                     // Ouput 4 star character
-                    createCard('characters', characters.fourStars);
+                    createCard('characters', characters.fourStars, 'four-stars');
 
                 } else {
                     // Output 4 star weapon
-                    createCard('weapons', weapons.fourStars);
+                    createCard('weapons', weapons.fourStars, 'four-stars');
                 }
                 // reset pity 4 count
                 pity4 = 0;
 
                 // Scenario: 3 star (Chance of 0.944)
             } else {
-                createCard('weapons', weapons.threeStars);
+                createCard('weapons', weapons.threeStars, 'three-stars');
             }
         }
         // Increase pity count & totalPullCount by 1
