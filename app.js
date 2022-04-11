@@ -100,8 +100,13 @@ const weapons = {
     ]
 }
 
-function randomPull() {
-    return weapons.threeStars[Math.floor(Math.random() * weapons.threeStars.length)];
+function createCard(type, drawableItems) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    let result = drawableItems[Math.floor(Math.random() * drawableItems.length)];
+
+    card.innerHTML = `<img src="images/${type}/${result}.png">`;
+    cardContainer.appendChild(card);
 }
 
 // Make a Single Wish
@@ -125,21 +130,10 @@ function makeSingleWish(e) {
 
         if (val > 0.5) {
             // Ouput 5 star character
-            const card = document.createElement('div');
-            card.classList.add('card');
-            let char5Star = characters.fiveStars[Math.floor(Math.random() * characters.fiveStars.length)];
-
-            card.innerHTML = `<img src="images/characters/${char5Star}.png">`;
-            cardContainer.appendChild(card);
-
+            createCard('characters', characters.fiveStars);
         } else {
             // Output 5 star weapon
-            const card = document.createElement('div');
-            card.classList.add('card');
-            let weapon5Star = weapons.fiveStars[Math.floor(Math.random() * weapons.fiveStars.length)];
-
-            card.innerHTML = `<img src="images/weapons/${weapon5Star}.png">`;
-            cardContainer.appendChild(card);
+            createCard('weapons', weapons.fiveStars);
         }
         // Reset pity 5 count
         pity5 = 0;
@@ -149,91 +143,55 @@ function makeSingleWish(e) {
         let val = Math.random();
         if (val > 0.5) {
             // Ouput 4 star character
-            const card = document.createElement('div');
-            card.classList.add('card');
-            let char4Star = characters.fourStars[Math.floor(Math.random() * characters.fourStars.length)];
-
-            card.innerHTML = `<img src="images/characters/${char4Star}.png">`;
-            cardContainer.appendChild(card);
+            createCard('characters', characters.fourStars);
 
         } else {
             // Output 4 star weapon
-            const card = document.createElement('div');
-            card.classList.add('card');
-            let weapon4Star = weapons.fourStars[Math.floor(Math.random() * weapons.fourStars.length)];
-
-            card.innerHTML = `<img src="images/weapons/${weapon4Star}.png">`;
-            cardContainer.appendChild(card);
+            createCard('weapons', weapons.fourStars);
         }
 
         // reset pity 4 count
         pity4 = 0;
 
-    } else { // Normal non-pity pull -///////Need to check for 0.006, 0.05
+    } else { // Normal non-pity pull - Need to check for 0.006, 0.05
         let val = Math.random();
 
         // Scenario: 5 star (Chance of 0.006)
         if (val < 0.006) {
             let val5star = Math.random();
+            // Output 5 star chracter or weapon (50% chance each)
             if (val5star > 0.5) {
                 // Ouput 5 star character
-                const card = document.createElement('div');
-                card.classList.add('card');
-                let char5Star = characters.fiveStars[Math.floor(Math.random() * characters.fiveStars.length)];
-
-                card.innerHTML = `<img src="images/characters/${char5Star}.png">`;
-                cardContainer.appendChild(card);
+                createCard('characters', characters.fiveStars);
 
             } else {
                 // Output 5 star weapon
-                const card = document.createElement('div');
-                card.classList.add('card');
-                let weapon5Star = weapons.fiveStars[Math.floor(Math.random() * weapons.fiveStars.length)];
-
-                card.innerHTML = `<img src="images/weapons/${weapon5Star}.png">`;
-                cardContainer.appendChild(card);
+                createCard('weapons', weapons.fiveStars);
             }
             // reset pity 5 count
             pity5 = 0;
 
-        } else if (val < 0.05) { // Scenario: 4 star (Chance of 0.05)
+            // Scenario: 4 star (Chance of 0.05)
+        } else if (val < 0.05) {
             let val4star = Math.random();
             if (val4star > 0.5) {
                 // Ouput 4 star character
-                const card = document.createElement('div');
-                card.classList.add('card');
-                let char4Star = characters.fourStars[Math.floor(Math.random() * characters.fourStars.length)];
-
-                card.innerHTML = `<img src="images/characters/${char4Star}.png">`;
-                cardContainer.appendChild(card);
+                createCard('characters', characters.fourStars);
 
             } else {
                 // Output 4 star weapon
-                const card = document.createElement('div');
-                card.classList.add('card');
-                let weapon4Star = weapons.fourStars[Math.floor(Math.random() * weapons.fourStars.length)];
-
-                card.innerHTML = `<img src="images/weapons/${weapon4Star}.png">`;
-                cardContainer.appendChild(card);
+                createCard('weapons', weapons.fourStars);
             }
             // reset pity 4 count
             pity4 = 0;
 
-        } else { // Scenario: 3 star (Chance of 0.944)
-            // Create card
-            const card = document.createElement('div');
-            card.classList.add('card');
-            let weapon3Star = weapons.threeStars[Math.floor(Math.random() * weapons.threeStars.length)];
-
-            card.innerHTML = `<img src="images/weapons/${weapon3Star}.png">`;
-            cardContainer.appendChild(card);
+            // Scenario: 3 star (Chance of 0.944)
+        } else {
+            createCard('weapons', weapons.threeStars);
         }
     }
-
-
-
-    // Paint the DOM with the card
 }
+
 
 // Make Ten Wishes
 function makeTenWishes(e) {
