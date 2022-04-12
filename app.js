@@ -102,14 +102,14 @@ const weapons = {
 
 function createCard(type, drawableItems, rarity) {
     const card = document.createElement('div');
-    
-    card.classList.add('card', `${rarity}`); 
+
+    card.classList.add('card', `${rarity}`);
     let result = drawableItems[Math.floor(Math.random() * drawableItems.length)];
 
     card.innerHTML = `<img src="images/${type}/${result}.png">`;
-    if(rarity === 'five-stars'){
+    if (rarity === 'five-stars') {
         card.style.background = '#B88B52';
-    } else if(rarity === 'four-stars') {
+    } else if (rarity === 'four-stars') {
         card.style.background = '#A18BB8';
     }
     // Add 'slide-in' class after 0.2s (CSS applied to 'slide-in' class)
@@ -132,8 +132,46 @@ function makeSingleWish(e) {
     totalPullsEl.innerText = `${totalPullCount}`;
     console.log(pity5, pity4);
 
-    // Check for 5 star pity
-    if (pity5 === 90) {
+    // Check for 5 star SOFT pity
+    if (pity5 >= 75 && pity5 < 90) {
+        let val = Math.random();
+
+        if (val < 0.2) {
+            let val5star = Math.random();
+            // Output 5 star chracter or weapon (50% chance each)
+            if (val5star > 0.5) {
+                // Ouput 5 star character
+                createCard('characters', characters.fiveStars, 'five-stars');
+
+            } else {
+                // Output 5 star weapon
+                createCard('weapons', weapons.fiveStars, 'five-stars');
+            }
+            console.log('Soft pity activated');
+            // reset pity 5 count
+            pity5 = 0;
+        
+            // Scenario: 4 star (Chance of 0.05)
+        } else if (val < 0.05) {
+            let val4star = Math.random();
+            if (val4star > 0.5) {
+                // Ouput 4 star character
+                createCard('characters', characters.fourStars, 'four-stars');
+
+            } else {
+                // Output 4 star weapon
+                createCard('weapons', weapons.fourStars, 'four-stars');
+            }
+            // reset pity 4 count
+            pity4 = 0;
+
+            // Scenario: 3 star (Chance of 0.944)
+        } else {
+            createCard('weapons', weapons.threeStars, 'three-stars');
+        }
+
+        // Check for 5 star pity
+    } else if (pity5 === 90) {
         // Output 5 star chracter or weapon (50% chance each)
         let val = Math.random();
 
