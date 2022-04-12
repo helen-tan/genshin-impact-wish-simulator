@@ -111,14 +111,26 @@ button.single-wish {
     font-size: 150%;
 }
 
-.card-container {
+.card-border {
     background-color: #fff;
     border: 2px solid #8A7DE8;
-    height: 350px;
-    width: 80%;
+    height: 380px;
+    width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative
+}
+
+.card-container {
+    background-color: #fff;
+    height: 90%;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
 }
 
 .card {
@@ -130,6 +142,13 @@ button.single-wish {
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+}
+
+.card.slide-in {
+    opacity: 1;
+    transform: translateX(-30px);
+    transition: all 0.3s ease-in;
 }
 
 .card img {

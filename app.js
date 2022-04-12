@@ -112,6 +112,9 @@ function createCard(type, drawableItems, rarity) {
     } else if(rarity === 'four-stars') {
         card.style.background = '#A18BB8';
     }
+    // Add 'slide-in' class after 0.2s (CSS applied to 'slide-in' class)
+    setTimeout(() => card.classList.add('slide-in'), 300);
+
     cardContainer.appendChild(card);
 }
 
