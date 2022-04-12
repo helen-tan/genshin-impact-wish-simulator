@@ -1,14 +1,19 @@
 const singleWishBtn = document.getElementById('single-wish');
 const tenWishBtn = document.getElementById('ten-wish');
 const totalPullsEl = document.getElementById('total-pulls');
+const pity5El = document.getElementById('pity5-pulls');
+const pity4El = document.getElementById('pity4-pulls');
 const cardContainer = document.getElementById('card-container');
 
 let totalPullCount = 0;
-// Output total pull count to DOM
-totalPullsEl.innerText = `${totalPullCount}`;
 
 let pity4 = 0;
 let pity5 = 0;
+
+// Output total pull count, pity5, pity4 values to DOM
+totalPullsEl.innerText = `${totalPullCount}`;
+pity5El.innerText = `${pity5}`;
+pity4El.innerText = `${pity4}`;
 
 const odds = {
     fiveStars: {
@@ -105,12 +110,12 @@ const weapons = {
 // Output character or weapon (50% chance each)
 function charOrWeaponSelect(rarity) {
     let val = Math.random();
-    
+
     if (val > 0.5) {
         if (rarity === 'five-stars') {
             // Ouput 5 star character
             createCard('characters', characters.fiveStars, rarity);
-        } else if(rarity === 'four-stars') {
+        } else if (rarity === 'four-stars') {
             // Ouput 4 star character
             createCard('characters', characters.fourStars, rarity);
         }
@@ -118,7 +123,7 @@ function charOrWeaponSelect(rarity) {
         if (rarity === 'five-stars') {
             // Ouput 5 star weapon
             createCard('weapons', weapons.fiveStars, rarity);
-        } else if(rarity === 'four-stars') {
+        } else if (rarity === 'four-stars') {
             // Ouput 4 star weapon
             createCard('weapons', weapons.fourStars, rarity);
         }
@@ -154,8 +159,12 @@ function makeSingleWish(e) {
     pity5++;
     pity4++;
     totalPullCount++;
-    // Output total pull count to DOM
+
+    // Output total pull count, pity5, pity4 values to DOM
     totalPullsEl.innerText = `${totalPullCount}`;
+    pity5El.innerText = `${pity5}`;
+    pity4El.innerText = `${pity4}`;
+
     console.log(pity5, pity4);
 
     // Check for 5 star SOFT pity
@@ -306,8 +315,12 @@ function makeTenWishes(e) {
         pity5++;
         pity4++;
         totalPullCount++;
-        // Output total pull count to DOM
+
+        // Output total pull count, pity5, pity4 values to DOM
         totalPullsEl.innerText = `${totalPullCount}`;
+        pity5El.innerText = `${pity5}`;
+        pity4El.innerText = `${pity4}`;
+
         console.log(pity5, pity4);
 
         i++;

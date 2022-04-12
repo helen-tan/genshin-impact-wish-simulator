@@ -100,13 +100,17 @@ button.single-wish {
     width: 90px;
 }
 
-.pull-count {
+.pull-count ,
+.pity5-count,
+.pity4-count {
     font-weight: bold;
     color: #8A7DE8;
     font-size: 16px;
 }
 
-.pull-count span {
+.pull-count span,
+.pity5-count span,
+.pity4-count span {
     color: #2e2e2e;
     font-size: 150%;
 }
