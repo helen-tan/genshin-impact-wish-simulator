@@ -3,7 +3,7 @@ A web application to simulate the gacha mechanics of Genshin Impact, an open-wor
 
 >
 >### Disclaimer
->This wish simulator is not affiated with miHoYo/HoYoverse and was created for fun and for HTML, CSS & JavaScript practice. All assets were taken from third party >websites. miHoyo/HoYoverse remains the sole owner of Genshin Impact.
+>This wish simulator is not affiated with miHoYo/HoYoverse and was created for fun and for HTML, CSS & JavaScript practice. All assets were taken from third party websites. miHoyo/HoYoverse remains the sole owner of Genshin Impact.
 
 ## Standard Banner - Wanderlust Invocation
 <p align="center">
