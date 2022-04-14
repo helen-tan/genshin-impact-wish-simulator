@@ -221,7 +221,7 @@ function makeSingleWish(e) {
             pity5 = 0;
 
             // Scenario: 4 star (Chance of 0.05)
-        } else if (val < 0.05) {
+        } else if (val < 0.056 && val >= 0.006) {
             // Output 4 star character or weapon (50% chance each)
             charOrWeaponSelect('four-stars');
 
@@ -301,7 +301,7 @@ function makeTenWishes(e) {
                 pity5 = 0;
 
                 // Scenario: 4 star (Chance of 0.05)
-            } else if (val < 0.05) {
+            } else if (val < 0.056 && val >= 0.006) {
                 // Output a 4 star character or weapon (50% chance each)
                 charOrWeaponSelect('four-stars');
 
