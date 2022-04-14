@@ -171,7 +171,8 @@ function makeSingleWish(e) {
     if (pity5 >= 75 && pity5 < 90) {
         let val = Math.random();
 
-        if (val < 0.2) {
+        // Scenario: 5 star (Chance of 0.2 - increased due to soft pity)
+        if (val < 0.25 && val >= 0.05) {
             // Output 5 star chracter or weapon (50% chance each)
             charOrWeaponSelect('five-stars');
             console.log('Soft pity activated');
@@ -189,7 +190,7 @@ function makeSingleWish(e) {
 
             // Scenario: 3 star (Chance of 0.944)
         } else {
-            createCard('three-stars');
+            createCard('weapons', weapons.threeStars, 'three-stars');
         }
 
         // Check for 5 star pity
@@ -250,7 +251,8 @@ function makeTenWishes(e) {
         if (pity5 >= 75 && pity5 < 90) {
             let val = Math.random();
 
-            if (val < 0.2) {
+            // Scenario: 5 star (Chance of 0.2 - increased due to soft pity)
+            if (val < 0.25 && val >= 0.05) {
                 // Output 5 star chracter or weapon (50% chance each)
                 charOrWeaponSelect('five-stars');
                 console.log('Soft pity activated');
