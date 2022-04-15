@@ -168,8 +168,19 @@ button.single-wish {
 .card p {
     color: #fff;
     position: absolute;
-    bottom: 10px;
+    bottom: 50px;
     text-align: center;
+    font-size: 0.75em;
+}
+
+.card .rarity-icon {
+    position: absolute;
+    bottom: 40px;
+}
+
+.card .rarity-icon i {
+    color: #FBCC3E;
+    font-size: 0.60em;
 }
 
 

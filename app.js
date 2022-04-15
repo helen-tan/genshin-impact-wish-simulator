@@ -142,16 +142,42 @@ function createCard(type, drawableItems, rarity) {
     // Change name from 'cool-steel' to 'Cool Steel'
     let formattedName = (result.replace(/-/g, ' ')).replace(/\b\w/g, letter => letter.toUpperCase());
 
+    let fiveStarsIcon = `<i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        `;
+
+    let fourStarsIcon = `<i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        `;
+
+    let threeStarsIcon = `<i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        `;
+    
+    let rarityIcon;
+
+    if (rarity === 'five-stars') {
+        rarityIcon = fiveStarsIcon;
+        card.style.background = '#B88B52';
+    } else if (rarity === 'four-stars') {
+        rarityIcon = fourStarsIcon;
+        card.style.background = '#A18BB8';
+    } else {
+        rarityIcon = threeStarsIcon;
+    }
+
     card.innerHTML = `
                     <img src="images/${type}/${result}.png">
                     <p class="item-name">${formattedName}</p>
+                    <div class="rarity-icon">${rarityIcon}</div>
                     `;
 
-    if (rarity === 'five-stars') {
-        card.style.background = '#B88B52';
-    } else if (rarity === 'four-stars') {
-        card.style.background = '#A18BB8';
-    }
     // Add 'slide-in' class after 0.2s (CSS applied to 'slide-in' class)
     setTimeout(() => card.classList.add('slide-in'), 300);
 
