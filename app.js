@@ -159,7 +159,7 @@ function createCard(type, drawableItems, rarity) {
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         `;
-    
+
     let rarityIcon;
 
     if (rarity === 'five-stars') {
@@ -188,31 +188,31 @@ function createCard(type, drawableItems, rarity) {
 function softPityCheck() {
     let val = Math.random();
 
-        // Scenario: 5 star (Chance of 0.2 - increased due to soft pity)
-        if (val < 0.25 && val >= 0.05) {
-            // Output 5 star chracter or weapon (50% chance each)
-            charOrWeaponSelect('five-stars');
-            console.log('Soft pity activated');
+    // Scenario: 5 star (Chance of 0.2 - increased due to soft pity)
+    if (val < 0.25 && val >= 0.05) {
+        // Output 5 star chracter or weapon (50% chance each)
+        charOrWeaponSelect('five-stars');
+        console.log('Soft pity activated');
 
-            // reset pity 5 count
-            pity5 = 0;
+        // reset pity 5 count
+        pity5 = 0;
 
-            // Scenario: 4 star (Chance of 0.05)
-        } else if (val < 0.05) {
-            // Output 4 star character or weapon (50% chance each)
-            charOrWeaponSelect('four-stars');
+        // Scenario: 4 star (Chance of 0.05)
+    } else if (val < 0.05) {
+        // Output 4 star character or weapon (50% chance each)
+        charOrWeaponSelect('four-stars');
 
-            // reset pity 4 count
-            pity4 = 0;
+        // reset pity 4 count
+        pity4 = 0;
 
-            // Scenario: 3 star (Chance of 0.944)
-        } else {
-            createCard('weapons', weapons.threeStars, 'three-stars');
-        }
+        // Scenario: 3 star (Chance of 0.944)
+    } else {
+        createCard('weapons', weapons.threeStars, 'three-stars');
+    }
 }
 
 // Make a Single Wish
-function makeSingleWish(e) {
+function makeSingleWish() {
     //e.preventDefault();
     // Remove any existing cards in the DOM
     cardContainer.innerHTML = '';
@@ -229,10 +229,19 @@ function makeSingleWish(e) {
 
     console.log(pity5, pity4);
 
-    // Check for 5 star SOFT pity
-    if (pity5 >= 75 && pity5 < 90) {
+    // Check for 5 star SOFT pity && 4 star pity (occur at the same time)
+    if (pity5 >= 75 && pity5 < 90 && pity4 === 10) {
+        // 4 star first - if pity4 === 10, output a 4 star char or weapon 
+        // Output a 4 star character or weapon (50% chance each)
+        charOrWeaponSelect('four-stars');
+
+        // reset pity 4 count
+        pity4 = 0;
+
+        // Check for 5 star SOFT pity
+    } else if (pity5 >= 75 && pity5 < 90) {
         softPityCheck();
-        
+
         // Check for 5 star pity
     } else if (pity5 === 90) {
         // Output 5 star chracter or weapon (50% chance each)
@@ -277,7 +286,7 @@ function makeSingleWish(e) {
 
 
 // Make Ten Wishes
-function makeTenWishes(e) {
+function makeTenWishes() {
     //e.preventDefault();
 
     // Remove any existing cards in the DOM
@@ -287,9 +296,19 @@ function makeTenWishes(e) {
     let i = 0;
 
     while (i < 10) {
-        // Check for 5 star SOFT pity
-        if (pity5 >= 75 && pity5 < 90) {
+        // Check for 5 star SOFT pity && 4 star pity (occur at the same time)
+        if (pity5 >= 75 && pity5 < 90 && pity4 === 10) {
+            // 4 star first - if pity4 === 10, output a 4 star char or weapon 
+            // Output a 4 star character or weapon (50% chance each)
+            charOrWeaponSelect('four-stars');
+
+            // reset pity 4 count
+            pity4 = 0;
+
+            // Check for 5 star SOFT pity
+        } else if (pity5 >= 75 && pity5 < 90) {
             softPityCheck();
+
 
             // Check for 5 star pity
         } else if (pity5 === 90) {
@@ -303,6 +322,7 @@ function makeTenWishes(e) {
         } else if (pity4 === 10) {
             // Output a 4 star character or weapon (50% chance each)
             charOrWeaponSelect('four-stars');
+            console.log('4 star pity');
 
             // reset pity 4 count
             pity4 = 0;
@@ -322,6 +342,7 @@ function makeTenWishes(e) {
             } else if (val < 0.056 && val >= 0.006) {
                 // Output a 4 star character or weapon (50% chance each)
                 charOrWeaponSelect('four-stars');
+                console.log('4 star non-pity');
 
                 // reset pity 4 count
                 pity4 = 0;
