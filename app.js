@@ -15,6 +15,7 @@ totalPullsEl.innerText = `${totalPullCount}`;
 pity5El.innerText = `${pity5}`;
 pity4El.innerText = `${pity4}`;
 
+/*
 const odds = {
     fiveStars: {
         chance: 0.006,
@@ -30,6 +31,7 @@ const odds = {
         chance: 0.944
     }
 }
+*/
 
 const characters = {
     fiveStars: ['Keqing', 'Mona', 'Qiqi', 'Diluc', 'Jean'],
@@ -137,7 +139,14 @@ function createCard(type, drawableItems, rarity) {
     card.classList.add('card', `${rarity}`);
     let result = drawableItems[Math.floor(Math.random() * drawableItems.length)];
 
-    card.innerHTML = `<img src="images/${type}/${result}.png">`;
+    // Change name from 'cool-steel' to 'Cool Steel'
+    let formattedName = (result.replace(/-/g, ' ')).replace(/\b\w/g, letter => letter.toUpperCase());
+
+    card.innerHTML = `
+                    <img src="images/${type}/${result}.png">
+                    <p class="item-name">${formattedName}</p>
+                    `;
+
     if (rarity === 'five-stars') {
         card.style.background = '#B88B52';
     } else if (rarity === 'four-stars') {
