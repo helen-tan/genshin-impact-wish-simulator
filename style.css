@@ -183,5 +183,17 @@ button.single-wish {
     font-size: 0.60em;
 }
 
+ul.summary-data {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.summary-data li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
 
 

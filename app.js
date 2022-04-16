@@ -4,6 +4,7 @@ const totalPullsEl = document.getElementById('total-pulls');
 const pity5El = document.getElementById('pity5-pulls');
 const pity4El = document.getElementById('pity4-pulls');
 const cardContainer = document.getElementById('card-container');
+const summaryEl = document.getElementById('summary');
 
 let totalPullCount = 0;
 
@@ -14,6 +15,13 @@ let pity5 = 0;
 totalPullsEl.innerText = `${totalPullCount}`;
 pity5El.innerText = `${pity5}`;
 pity4El.innerText = `${pity4}`;
+
+let pullData = [
+    /*
+    {name: 'Keqing', count: 2},
+    {name: 'Diluc', count: 4}
+    */
+];
 
 /*
 const odds = {
@@ -133,6 +141,7 @@ function charOrWeaponSelect(rarity) {
     console.log('50% chance of char or weapon');
 }
 
+// Create card & output to DOM
 function createCard(type, drawableItems, rarity) {
     const card = document.createElement('div');
 
@@ -181,7 +190,56 @@ function createCard(type, drawableItems, rarity) {
     // Add 'slide-in' class after 0.2s (CSS applied to 'slide-in' class)
     setTimeout(() => card.classList.add('slide-in'), 300);
 
+    // Update pullData arr
+    updateData(formattedName);
+
     cardContainer.appendChild(card);
+}
+
+function itemExists(name) {
+    return pullData.some(item => { return item.name === name });
+}
+
+
+// Add item to pullData arr
+function updateData(itemName) {
+    // If value of the key 'name' already exist, increase the count
+    if(itemExists(itemName) === true) {
+        pullData.forEach(item => {
+            if (itemName === item.name) {
+                item.count++;
+            }
+        });
+    // If value of the key 'name' doesnt exist - push a new item into the pullData array
+    } else {
+        pullData.push({
+            name: itemName,
+            count: 1
+        });
+    }
+    // console.log(pullData);
+
+    updateSummaryEl()
+}
+
+// output each item to DOM
+function updateSummaryEl() {
+    let output = '';
+
+    pullData.forEach(item => {
+        output += `
+            <li>
+                <span><strong> ${item.name} </strong></span>
+                <span> x${item.count} </span>
+            </li>
+        `;
+    });
+
+    summaryEl.innerHTML = `
+        <ul class="summary-data">
+            ${output}
+        </ul>
+    `;
 }
 
 // Check for 5 star SOFT pity
