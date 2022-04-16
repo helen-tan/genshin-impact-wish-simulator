@@ -117,6 +117,24 @@ const weapons = {
     ]
 }
 
+let fiveStarsIcon = `<i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    `;
+
+let fourStarsIcon = `<i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    `;
+
+let threeStarsIcon = `<i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    `;
+
 // Output character or weapon (50% chance each)
 function charOrWeaponSelect(rarity) {
     let val = Math.random();
@@ -143,6 +161,7 @@ function charOrWeaponSelect(rarity) {
 
 // Create card & output to DOM
 function createCard(type, drawableItems, rarity) {
+    let rarityIcon;
     const card = document.createElement('div');
 
     card.classList.add('card', `${rarity}`);
@@ -150,26 +169,6 @@ function createCard(type, drawableItems, rarity) {
 
     // Change name from 'cool-steel' to 'Cool Steel'
     let formattedName = (result.replace(/-/g, ' ')).replace(/\b\w/g, letter => letter.toUpperCase());
-
-    let fiveStarsIcon = `<i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        `;
-
-    let fourStarsIcon = `<i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        `;
-
-    let threeStarsIcon = `<i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        `;
-
-    let rarityIcon;
 
     if (rarity === 'five-stars') {
         rarityIcon = fiveStarsIcon;
@@ -219,7 +218,7 @@ function updateData(itemName) {
     }
     // console.log(pullData);
 
-    updateSummaryEl()
+    updateSummaryEl();
 }
 
 // output each item to DOM
@@ -229,8 +228,8 @@ function updateSummaryEl() {
     pullData.forEach(item => {
         output += `
             <li>
-                <span><strong> ${item.name} </strong></span>
-                <span> x${item.count} </span>
+                <span><strong> ${item.name} </strong></span> 
+                <span> x ${item.count} </span>
             </li>
         `;
     });
