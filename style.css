@@ -30,6 +30,7 @@ body {
 p {
     font-size: 16px;
     line-height: 150%;
+    letter-spacing: normal;
     color: #313131;
 }
 
@@ -48,6 +49,14 @@ header {
 h2 {
     font-weight: bold;
     color: #7160EC;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: 30px;
+    color: #7160EC;
+    margin: 0;
+    margin-top: 5%;
 }
 
 .wish-container {
@@ -183,9 +192,27 @@ button.single-wish {
     font-size: 0.60em;
 }
 
+.summary {
+    background-color: #EBEBEB;
+    width: 90%;
+    margin-top: 5%; 
+}
+
+.summary p {
+    color: #2C2F33;
+    font-weight: bold;;
+    text-align: center;
+    line-height: 100px;
+    letter-spacing: normal;
+}
+
 ul.summary-data {
     list-style-type: none;
+    width: 90%;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
 }
 
 ul.summary-data li {
@@ -193,6 +220,18 @@ ul.summary-data li {
     align-items: center;
     justify-content: space-between;
     margin: 10px 0;
+    background-color: #fff;
+    padding: 3%;
+    border-radius: 5px;
+    border: rgba(0,0,0,.125) 1px solid;
+}
+
+ul.summary-data li:first-child {
+    margin-top: 5%;
+}
+
+ul.summary-data li:last-child {
+    margin-bottom: 5%;
 }
 
 
