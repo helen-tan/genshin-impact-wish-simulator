@@ -233,3 +233,8 @@ ul.summary-data li:first-child {
 ul.summary-data li:last-child {
     margin-bottom: 5%;
 }
+
+ul.summary-data li .rarity-icon i {  
+    color: #FBCC3E;
+    font-size: 1em;
+} 

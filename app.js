@@ -18,8 +18,8 @@ pity4El.innerText = `${pity4}`;
 
 let pullData = [
     /*
-    {name: 'Keqing', count: 2},
-    {name: 'Diluc', count: 4}
+    {name: 'Keqing', count: 2, rarity: 'five-stars'},
+    {name: 'Diluc', count: 4, rarity: 'five-stars'}
     */
 ];
 
@@ -190,7 +190,7 @@ function createCard(type, drawableItems, rarity) {
     setTimeout(() => card.classList.add('slide-in'), 300);
 
     // Update pullData arr
-    updateData(formattedName);
+    updateData(formattedName, rarity);
 
     cardContainer.appendChild(card);
 }
@@ -201,7 +201,7 @@ function itemExists(name) {
 
 
 // Add item to pullData arr
-function updateData(itemName) {
+function updateData(itemName, rarity) {
     // If value of the key 'name' already exist, increase the count
     if(itemExists(itemName) === true) {
         pullData.forEach(item => {
@@ -213,7 +213,8 @@ function updateData(itemName) {
     } else {
         pullData.push({
             name: itemName,
-            count: 1
+            count: 1,
+            rarity: rarity
         });
     }
     // console.log(pullData);
@@ -226,9 +227,20 @@ function updateSummaryEl() {
     let output = '';
 
     pullData.forEach(item => {
+        let rarityIcon 
+        // Determine the rarity icon to show
+        if (item.rarity === 'five-stars') {
+            rarityIcon = fiveStarsIcon;
+        } else if (item.rarity === 'four-stars') {
+            rarityIcon = fourStarsIcon;
+        } else {
+            rarityIcon = threeStarsIcon;
+        }
+        // Create list element
         output += `
             <li>
                 <span><strong> ${item.name} </strong></span> 
+                <span class="rarity-icon"> ${rarityIcon}</span>
                 <span> x ${item.count} </span>
             </li>
         `;
