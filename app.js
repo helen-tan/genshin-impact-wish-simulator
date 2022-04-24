@@ -353,6 +353,17 @@ function makeTenWishes() {
     let i = 0;
 
     while (i < 10) {
+        // Increase pity count & totalPullCount by 1
+        pity5++;
+        pity4++;
+        totalPullCount++;
+        console.log(pity5, pity4);
+
+        // Output total pull count, pity5, pity4 values to DOM
+        totalPullsEl.innerText = `${totalPullCount}`;
+        pity5El.innerText = `${pity5}`;
+        pity4El.innerText = `${pity4}`;
+        
         // Check for 5 star SOFT pity && 4 star pity (occur at the same time)
         if (pity5 >= 75 && pity5 < 90 && pity4 === 10) {
             // 4 star first - if pity4 === 10, output a 4 star char or weapon 
@@ -409,17 +420,6 @@ function makeTenWishes() {
                 createCard('weapons', weapons.threeStars, 'three-stars');
             }
         }
-        // Increase pity count & totalPullCount by 1
-        pity5++;
-        pity4++;
-        totalPullCount++;
-
-        // Output total pull count, pity5, pity4 values to DOM
-        totalPullsEl.innerText = `${totalPullCount}`;
-        pity5El.innerText = `${pity5}`;
-        pity4El.innerText = `${pity4}`;
-
-        console.log(pity5, pity4);
 
         i++;
     }
