@@ -238,3 +238,7 @@ ul.summary-data li .rarity-icon i {
     color: #FBCC3E;
     font-size: 1em;
 } 
+
+ul.summary-data li img {
+    width: 6%;
+}

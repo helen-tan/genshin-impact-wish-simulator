@@ -18,8 +18,8 @@ pity4El.innerText = `${pity4}`;
 
 let pullData = [
     /*
-    {name: 'Keqing', count: 2, rarity: 5},
-    {name: 'Diluc', count: 4, rarity: 5}
+    {name: 'Keqing', count: 2, rarity: 5, type: "characters"},
+    {name: 'emerald-orb', count: 4, rarity: 3, type: "weapons"}
     */
 ];
 
@@ -190,7 +190,7 @@ function createCard(type, drawableItems, rarity) {
     setTimeout(() => card.classList.add('slide-in'), 300);
 
     // Update pullData arr
-    updateData(formattedName, rarity);
+    updateData(result, rarity); 
 
     cardContainer.appendChild(card);
 }
@@ -203,18 +203,27 @@ function itemExists(name) {
 // Add item to pullData arr
 function updateData(itemName, rarity) {
     // If value of the key 'name' already exist, increase the count
-    if(itemExists(itemName) === true) {
+    if (itemExists(itemName) === true) {
         pullData.forEach(item => {
             if (itemName === item.name) {
                 item.count++;
             }
         });
-    // If value of the key 'name' doesnt exist - push a new item into the pullData array
+        // If value of the key 'name' doesnt exist - push a new item into the pullData array
     } else {
+        let type
+        // Determine what type
+        if (characters.fiveStars.includes(itemName) || characters.fourStars.includes(itemName)) {
+            type = "characters";
+        } else {
+            type = "weapons"
+        }
+
         pullData.push({
             name: itemName,
             count: 1,
-            rarity: rarity
+            rarity: rarity,
+            type: type
         });
     }
     // console.log(pullData);
@@ -226,10 +235,10 @@ function updateData(itemName, rarity) {
 function updateSummaryEl() {
     let output = '';
     // convert the array of objects into an array of array (ordering can only be done on an array)
-    let sortable = sortByRarity(); // [ ["Keqing", 1 , 5], ["Chongyun", 2, 4] ]
+    let sortable = sortByRarity(); // [ ["Keqing", 1 , 5, "characters"], ["emerald-orb", 2, 3, "weapons"] ]
 
     sortable.forEach(item => {
-        let rarityIcon 
+        let rarityIcon
         // Determine the rarity icon to show
         if (item[2] === 5) {
             rarityIcon = fiveStarsIcon;
@@ -238,10 +247,15 @@ function updateSummaryEl() {
         } else {
             rarityIcon = threeStarsIcon;
         }
+
+        // Change name from 'cool-steel' to 'Cool Steel'
+        let formattedName = (item[0].replace(/-/g, ' ')).replace(/\b\w/g, letter => letter.toUpperCase());
+        
         // Create list element
         output += `
             <li>
-                <span><strong> ${item[0]} </strong></span> 
+                <img src="images/${item[3]}/${item[0]}.png">
+                <span><strong> ${formattedName} </strong></span> 
                 <span class="rarity-icon"> ${rarityIcon}</span>
                 <span> x ${item[1]} </span>
             </li>
@@ -259,7 +273,7 @@ function updateSummaryEl() {
 function sortByRarity() {
     sortable = pullData.map(Object.values); // [ ["Keqing", 1 , 5], ["Chongyun", 2, 4] ]
     // Sort by descending order
-    return sortable.sort((a, b) => b[2] - a[2] );
+    return sortable.sort((a, b) => b[2] - a[2]);
 }
 
 // Check for 5 star SOFT pity
@@ -381,7 +395,7 @@ function makeTenWishes() {
         totalPullsEl.innerText = `${totalPullCount}`;
         pity5El.innerText = `${pity5}`;
         pity4El.innerText = `${pity4}`;
-        
+
         // Check for 5 star SOFT pity && 4 star pity (occur at the same time)
         if (pity5 >= 75 && pity5 < 90 && pity4 === 10) {
             // 4 star first - if pity4 === 10, output a 4 star char or weapon 
