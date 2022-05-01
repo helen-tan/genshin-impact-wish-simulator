@@ -236,6 +236,7 @@ function updateSummaryEl() {
     let output = '';
     // convert the array of objects into an array of array (ordering can only be done on an array)
     let sortable = sortByRarity(); // [ ["Keqing", 1 , 5, "characters"], ["emerald-orb", 2, 3, "weapons"] ]
+    sortable = sortByType(sortable);
 
     sortable.forEach(item => {
         let rarityIcon
@@ -269,11 +270,30 @@ function updateSummaryEl() {
     `;
 }
 
-// Sort pull summary by rarity - rarest first
+// Sort pull summary by rarity - rarest first (char and weapons not ordered)
 function sortByRarity() {
-    sortable = pullData.map(Object.values); // [ ["Keqing", 1 , 5], ["Chongyun", 2, 4] ]
+    sortable = pullData.map(Object.values); // [ ["Keqing", 1 , 5, "characters"], ["emerald-orb", 2, 3, "weapons"] ]
     // Sort by descending order
     return sortable.sort((a, b) => b[2] - a[2]);
+}
+
+// Sort pull summary by type - characters first, then weapons
+function sortByType(raritySortedArr) {
+    let typeSortedArr = []
+    // Push the characters into the arr first
+    raritySortedArr.forEach( item => {
+        if(item[3] == "characters") {
+            typeSortedArr.push(item)
+        }
+    });
+    // After characters are pushed in, push the weapons
+    raritySortedArr.forEach(item => {
+        if(item[3] == "weapons") {
+            typeSortedArr.push(item)
+        }
+    });
+    
+    return typeSortedArr;
 }
 
 // Check for 5 star SOFT pity
