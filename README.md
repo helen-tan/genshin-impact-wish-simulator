@@ -23,3 +23,7 @@ A web application to simulate the gacha mechanics of Genshin Impact, an open-wor
     1. Total pulls
     2. Pulls until 5 star pity (90th pull)
     3. Pulls until 4 star pity (10th pull)
+8. Summary of all pulls
+    1. Rarest items are displayed at the top of the list
+    2. Characters are displayed first
+    3. The count for each pulled item is displayed
