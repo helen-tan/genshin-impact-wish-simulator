@@ -1,0 +1,26 @@
+button {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 5px 15px;
+    background-color: #fff;
+    border: 3px solid #8A7DE8;
+    color: #8A7DE8;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button:focus {
+    outline: 0;
+}
+
+button.ten-wish {
+    width: 130px;
+}
+
+button.single-wish {
+    width: 90px;
+}
