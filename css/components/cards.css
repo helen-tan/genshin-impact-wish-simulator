@@ -1,7 +1,7 @@
 .card-border {
     background-color: #fff;
     border: 2px solid #8A7DE8;
-    height: 380px;
+    min-height: 380px;
     width: 90%;
     display: flex;
     justify-content: center;
@@ -9,6 +9,7 @@
     position: relative
 }
 
+/*
 .card-container {
     background-color: #fff;
     height: 90%;
@@ -19,7 +20,22 @@
     position: absolute;
     right: 0;
 }
+*/
 
+.card-container {
+    background-color: #fff;
+    height: 90%;
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.5rem;
+    position: absolute;
+    right: 0;
+    overflow-x: scroll;
+    margin: 0 auto;
+}
+
+/*
 .card {
     background-color: rgba(50, 50, 50, 0.9);
     border-radius: 5px;
@@ -33,10 +49,35 @@
     position: relative;
     opacity: 0;
 }
+*/
+
+.card {
+    background-color: rgba(50, 50, 50, 0.9);
+    border-radius: 5px;
+    height: 300px;
+    width: 100px;
+    //margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    opacity: 0;
+}
+
+@media (min-width: 600px) {
+    .card-container { overflow-x: visible; }
+    .card { width: auto; }
+}
+
+@media (min-width: 900px) {
+    .card-container { overflow-x: visible; }
+    .card { width: auto; }
+}
 
 .card.slide-in {
     opacity: 1;
-    transform: translateX(-30px);
+    transform: translateX(-10px);
     transition: all 0.3s ease-in;
 }
 
